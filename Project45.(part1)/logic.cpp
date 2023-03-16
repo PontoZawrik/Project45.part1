@@ -13,23 +13,36 @@ void japanese_mathematics() {
 		a = rand() % (max - min + 1) + min;
 
 		min = -9;
-		b = rand() % (max - min + 1) + min;
+			b = rand() % (max - min + 1) + min;
 
-		b > 0 ? max = -1 : min = 1;
+		b >= 0 ? max = -1 : min = 1;
 		c = rand() % (max - min + 1) + min;
 
 		int sum = a + b + c;
 		string t1 = " + ";
 		string t2 = " + ";
-		b < 0 ? t1 = " - " : t2 = " - ";
+
+		if (b < 0) {
+			t1 = " - ";
+			b = -b;	
+		}
+		else {
+			t2 = " - ";
+			c = -c;
+		}
+		
 
 		int input;
 		cout << a << t1 << b << t2 << c << " = ";
 		cin >> input;
 
 		stoper = input == -10 ? 1 : 0;
+		if (input != sum && input != -10) {
+			stoper = 1;
+			cout << "wrong decision" << endl;
+		}
 		count++;
 	}
-	cout << "you have solved " << count << " examples.";
+	cout << "you have solved " << count - 1 << " examples." << endl;
 
 }
